@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Maintenance Report | Socienta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<h1>Monthly Maintenance Report</h1>
+
+<form method="GET">
+    <input type="text" name="month" placeholder="Month (e.g. July 2025)" required>
+    <button type="submit">View Report</button>
+</form>
+
+<br>
+
+{% if records %}
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Resident</th>
+        <th>Month</th>
+        <th>Amount</th>
+        <th>Status</th>
+    </tr>
+
+    {% for r in records %}
+    <tr>
+        <td>{{ r[0] }}</td>
+        <td>{{ r[1] }}</td>
+        <td>{{ r[2] }}</td>
+        <td>{{ r[3] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+<br>
+<a href="/dashboard">Back to Dashboard</a>
+
+</body>
+</html>

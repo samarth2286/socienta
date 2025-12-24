@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard | Socienta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <h1>Socienta Dashboard</h1>
+    <p>Welcome {{ username }} ({{ role }})</p>
+
+    {% if role == "admin" %}
+        <h3>Admin Panel</h3>
+        <ul>
+           <li><a href="/add-resident">➕ Add Residents</a></li>
+
+
+            <li>📢 Manage Notices</li>
+            <li><a href="/view-complaints">🛠 View All Complaints</a></li>
+            <li><a href="/view-visitors">🚪 Visitor Requests</a></li>
+            <li><a href="/set-payment">💰 Set Maintenance</a></li>
+            <li><a href="/maintenance-report">📊 Maintenance Report</a></li>
+
+
+
+
+            <li>🚪 Visitor Logs</li>
+        </ul>
+    {% else %}
+        <h3>Resident Panel</h3>
+        <ul>
+            <li>📢 View Notices</li>
+
+           <li><a href="/raise-complaint">🛠 Raise Complaint</a></li>
+
+            <li><a href="/add-visitor">🚪 Add Visitor</a></li>
+            <li><a href="/my-visitors">🚪 My Visitors</a></li>
+            <li><a href="/my-payments">💰 My Payments</a></li>
+
+
+
+            <li>💰 View Maintenance</li>
+        </ul>
+    {% endif %}
+
+    <br>
+    <a href="/logout">Logout</a>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Visitor Requests | Socienta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <h1>Visitor Requests</h1>
+
+    <table border="1" cellpadding="10">
+        <tr>
+            <th>Resident</th>
+            <th>Visitor Name</th>
+            <th>Purpose</th>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+
+        {% for v in visitors %}
+        <tr>
+            <td>{{ v[0] }}</td>
+            <td>{{ v[1] }}</td>
+            <td>{{ v[2] }}</td>
+            <td>{{ v[3] }}</td>
+            <td>
+                <form method="POST" action="/update-visitor-status">
+                    <input type="hidden" name="visitor_id" value="{{ v[5] }}">
+                    <select name="status">
+                        <option value="Pending" {% if v[4] == "Pending" %}selected{% endif %}>Pending</option>
+                        <option value="Approved" {% if v[4] == "Approved" %}selected{% endif %}>Approved</option>
+                        <option value="Rejected" {% if v[4] == "Rejected" %}selected{% endif %}>Rejected</option>
+                    </select>
+                    <button type="submit">Update</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="/dashboard">Back to Dashboard</a>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Payments | Socienta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<h1>My Maintenance Payments</h1>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Month</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    {% for p in payments %}
+    <tr>
+        <td>{{ p[0] }}</td>
+        <td>{{ p[1] }}</td>
+        <td>{{ p[2] }}</td>
+        <td>
+            {% if p[2] == "Unpaid" %}
+            <form method="POST" action="/pay-maintenance">
+                <input type="hidden" name="payment_id" value="{{ p[3] }}">
+                <button type="submit">Pay</button>
+            </form>
+            {% else %}
+            Paid ✅
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+<a href="/dashboard">Back to Dashboard</a>
+
+</body>
+</html>

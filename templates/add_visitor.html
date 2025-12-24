@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Visitor | Socienta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <h1>Add Visitor</h1>
+
+    <form method="POST">
+        <input type="text" name="visitor_name" placeholder="Visitor Name" required>
+        <br><br>
+
+        <input type="text" name="purpose" placeholder="Purpose of Visit" required>
+        <br><br>
+
+        <input type="date" name="visit_date" required>
+        <br><br>
+
+        <button type="submit">Submit Visitor Request</button>
+    </form>
+
+    <br>
+    <a href="/dashboard">Back to Dashboard</a>
+
+</body>
+</html>

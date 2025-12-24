@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Complaints | Socienta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <h1>All Complaints</h1>
+
+    <table border="1" cellpadding="10">
+        <tr>
+            <th>Resident</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+        </tr>
+
+        {% for c in complaints %}
+        <tr>
+            <td>{{ c[0] }}</td>
+            <td>{{ c[1] }}</td>
+            <td>{{ c[2] }}</td>
+            <td>
+    <form method="POST" action="/update-complaint-status">
+        <input type="hidden" name="complaint_id" value="{{ c[4] }}">
+        <select name="status">
+            <option value="Open" {% if c[3] == "Open" %}selected{% endif %}>Open</option>
+            <option value="In Progress" {% if c[3] == "In Progress" %}selected{% endif %}>In Progress</option>
+            <option value="Closed" {% if c[3] == "Closed" %}selected{% endif %}>Closed</option>
+        </select>
+        <button type="submit">Update</button>
+    </form>
+</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="/dashboard">Back to Dashboard</a>
+
+</body>
+</html>
